@@ -1,0 +1,22 @@
+// my to-do list
+
+// RESEARCH & CODING 
+// get data from given database
+// show data in json format
+// get songs details by song name
+// get songs details by artist
+// get songs details by genre name
+// details include: song, artist, genre, name, length
+// get songs details by length (parameters: minimum and maximum length)
+// get all count of songs and sum of length grouped by genre
+
+// DOC
+// create glide.yaml file containing all dependencies
+// create readme.md explaining set up and install
+
+// TESTING
+// create unit tests
+
+// QUESTIONS
+// Sugestions about structure of data?
+// Fields would I index in these tables?
