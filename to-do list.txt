@@ -1,9 +1,9 @@
 // my to-do list
 
-// RESEARCH & CODING 
+// RESEARCH & CODING
 // get data from given database
 // show data in json format
-// get songs details by song name
+// get songs details by title
 // get songs details by artist
 // get songs details by genre name
 // details include: song, artist, genre, name, length
