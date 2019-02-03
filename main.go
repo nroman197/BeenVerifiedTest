@@ -14,6 +14,8 @@ func main() {
 	mux.HandleFunc(pat.Get("/searchSongsbyTitle/:title"), searchSongsbyTitle)
 	mux.HandleFunc(pat.Get("/searchSongsbyArtist/:artist"), searchSongsbyArtist)
 	mux.HandleFunc(pat.Get("/searchSongsbyGenre/:genre"), searchSongsbyGenre)
+	mux.HandleFunc(pat.Get("/searchSongsbyLength/:minLength&maxLength"), searchSongsbyLength)
+	mux.HandleFunc(pat.Get("/getListofGenres"), getListofGenres)
 	// listening port
 	http.ListenAndServe("localhost:8000", mux)
 }
