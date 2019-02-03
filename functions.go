@@ -1,18 +1,14 @@
 package main
 
 import (
-	//"fmt"
 	"net/http"
 	"database/sql"
-  "goji.io/pat"
+	"goji.io"
+	"goji.io/pat"
 	_ "github.com/mattn/go-sqlite3"
 	"encoding/json"
 	"strings"
 )
-
-
-// global database
-var myDB *sql.DB
 
 // function to get all songs that match with a search title value
 func searchSongsbyTitle(w http.ResponseWriter, r *http.Request) {
@@ -149,4 +145,15 @@ func getGenreList(pQuery string) []GenreList{
 	myDB.Close()
 
 	return genreList
+}
+
+// function to set required function to mux
+func getMux() *goji.Mux {
+	// create mux
+	mux := goji.NewMux()
+	// set pattern and function
+	for _, Path := range plist {
+			mux.HandleFunc(pat.Get(Path.Pat),Path.Function)
+	}
+	return mux
 }
