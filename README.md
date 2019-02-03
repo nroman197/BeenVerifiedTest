@@ -24,26 +24,61 @@ https://s3.amazonaws.com/bv-challenge/jrdd.db.
 ### Requirements & Installation
 This program requires the following:
 
-* Install Golang 1.9
+- [x]  Install Golang 1.9
 
 Recommended commands for ubuntu:
 ```
 sudo add-apt-repository ppa:gophers/archive
 sudo apt update
 sudo apt-get install golang-1.9-go
-export PATH=$PATH:/usr/local/go/bin
 ```
+For setting environment variable, check out this link: https://github.com/golang/go/wiki/SettingGOPATH.
 
-* Goji
+- [x] Goji
 
 Recommended commands for ubuntu:
 ```
      go get goji.io
 ```
-* Sqllite3
+- [x] Sqllite3
 
 Recommended commands for ubuntu:
 ```
 go get github.com/mattn/go-sqlite3
 ```
 ### How to use
+
+To  run this program open Terminal and run ./BeenVerifiedTest.
+
+Go to browser and search any of the following functions:
+
+#### Search song by title
+This function will return every found song whose title matches with the search value written in the path.
+
+Example:
+http://localhost:8000/searchSongsbyTitle/Hey%20Jude
+
+#### Search song by artist
+This function will return every found song whose artist matches with the search value written in the path.
+
+Example:
+http://localhost:8000/searchSongsbyArtist/The%20Black%20Eyed
+
+#### Search song by genre
+This function will return every found song whose genre matches with the search value written in the path.
+
+Example:
+http://localhost:8000/searchSongsbyGenre/Classic
+
+#### Search song by length
+This function will return every found song whose length is in the range written in the path. Format is: minLenght&maxLength.
+
+Example:
+http://localhost:8000/searchSongsbyLength/100&200
+
+#### Get List of genres
+This function will return number of songs and total length by each genre.
+
+Example:
+
+http://localhost:8000/getListofGenres/

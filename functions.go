@@ -19,7 +19,7 @@ func searchSongsbyTitle(w http.ResponseWriter, r *http.Request) {
 	// define param of path
 	title := pat.Param(r, "title")
 	// this is the sql query to get matching songs
-	var query ="SELECT S.song AS Title,  S.artist AS Artist, G.name AS 'Genre', S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.song LIKE '%"+ title + "%' ORDER BY S.song;"
+	var query ="SELECT S.song AS Title,  S.artist AS Artist, G.name AS Genre, S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.song LIKE '%"+ title + "%' ORDER BY S.song ASC;"
 	// call function to get queried songs from database
 	songsList := getSongs(query)
 	// write JSON values to an output stream
@@ -31,7 +31,7 @@ func searchSongsbyArtist(w http.ResponseWriter, r *http.Request) {
 	// define param of path
 	artist := pat.Param(r, "artist")
 	// this is the sql query to get matching songs
-	var query ="SELECT S.song AS Title,  S.artist AS Artist, G.name AS 'Genre', S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.artist LIKE '%"+ artist + "%' ORDER BY S.artist ASC;"
+	var query ="SELECT S.song AS Title,  S.artist AS Artist, G.name AS Genre, S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.artist LIKE '%"+ artist + "%' ORDER BY S.artist ASC;"
 	// call function to get queried songs from database
 	songsList := getSongs(query)
 	// write JSON values to an output stream
@@ -43,7 +43,7 @@ func searchSongsbyGenre(w http.ResponseWriter, r *http.Request) {
 	// define param of path
 	genre := pat.Param(r, "genre")
 	// this is the sql query to get matching songs
-	var query ="SELECT S.Song AS Title,  S.artist AS Artist, G.name AS 'Genre', S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE G.name LIKE '%"+ genre + "%' ORDER BY G.name ASC;"
+	var query ="SELECT S.Song AS Title,  S.artist AS Artist, G.name AS Genre, S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE G.name LIKE '%"+ genre + "%' ORDER BY G.name ASC;"
 	// call function to get queried songs from database
 	songsList := getSongs(query)
 	// write JSON values to an output stream
@@ -58,7 +58,7 @@ func searchSongsbyLength(w http.ResponseWriter, r *http.Request) {
   minLength := minMaxLengths[0]
   maxLength := minMaxLengths[1]
 	// this is the sql query to get matching songs
-	var query ="SELECT S.Song AS Title,  S.artist AS Artist, G.name AS 'Genre', S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.length BETWEEN "+ minLength + " AND " + maxLength + " ORDER BY S.length ASC;"
+	var query ="SELECT S.Song AS Title,  S.artist AS Artist, G.name AS Genre, S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.length BETWEEN "+ minLength + " AND " + maxLength + " ORDER BY S.length ASC;"
 	// call function to get queried songs from database
 	songsList := getSongs(query)
 	// write JSON values to an output stream
@@ -68,7 +68,7 @@ func searchSongsbyLength(w http.ResponseWriter, r *http.Request) {
 // function to get numberofsongs and total length grouped by genre
 func getListofGenres(w http.ResponseWriter, r *http.Request) {
 	// this is the sql query to get matching songs
-	var query ="SELECT G.name AS 'Genre', COUNT(1) AS NumberofSongs, SUM(S.length) AS TotalLength FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre GROUP BY G.name ORDER BY G.name;"
+	var query ="SELECT G.name AS Genre, COUNT(1) AS NumberofSongs, SUM(S.length) AS TotalLength FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre GROUP BY G.name ORDER BY G.name;"
 	// call function to get queried songs from database
 	songsList := getGenreList(query)
 	// write JSON values to an output stream
