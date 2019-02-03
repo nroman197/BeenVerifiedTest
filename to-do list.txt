@@ -5,8 +5,8 @@
 // show data in json format
 // get songs details by title
 // get songs details by artist
-// get songs details by genre name
-// details include: song, artist, genre, name, length
+// get songs details by genre
+// details include: song, artist, genre,length
 // get songs details by length (parameters: minimum and maximum length)
 // get all count of songs and sum of length grouped by genre
 

@@ -24,24 +24,23 @@ https://s3.amazonaws.com/bv-challenge/jrdd.db.
 ### Requirements & Installation
 This program requires the following:
 
-* #####Install Golang 1.9
+* Install Golang 1.9
 
 Recommended commands for ubuntu:
 ```
 sudo add-apt-repository ppa:gophers/archive
 sudo apt update
 sudo apt-get install golang-1.9-go
-echo "export PATH=\$PATH:/usr/lib/go-1.9/bin" >> ~/.profile
-source ~/.profile
+export PATH=$PATH:/usr/local/go/bin
 ```
 
-* #####Goji
+* Goji
 
 Recommended commands for ubuntu:
 ```
      go get goji.io
 ```
-* #####Sqllite3
+* Sqllite3
 
 Recommended commands for ubuntu:
 ```
