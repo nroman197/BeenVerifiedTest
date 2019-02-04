@@ -89,3 +89,17 @@ This function will return number of songs and total length by each genre.
 Example:
 
 http://localhost:8000/getListofGenres/
+
+#### Unit Tests
+
+Here are some unit tests:
+* search title
+* search artist
+* search genre
+* check 2 parameters in string
+* check numeric values
+
+For testing run the following:
+```
+go test
+```
