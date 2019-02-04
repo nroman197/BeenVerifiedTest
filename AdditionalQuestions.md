@@ -1,6 +1,6 @@
 # Additional Questions
 
-###1. Are there any suggestions you could make about the structure of our data?
+### 1. Are there any suggestions you could make about the structure of our data?
 
 Some suggestions I would make:
 
