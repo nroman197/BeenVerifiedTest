@@ -50,15 +50,30 @@ func searchSongsbyGenre(w http.ResponseWriter, r *http.Request) {
 func searchSongsbyLength(w http.ResponseWriter, r *http.Request) {
 	// define param of path
 	lenghts := pat.Param(r, "minLength&maxLength")
-  minMaxLengths := strings.Split(lenghts, "&")
-  minLength := minMaxLengths[0]
-  maxLength := minMaxLengths[1]
-	// this is the sql query to get matching songs
-	var query ="SELECT S.Song AS Title,  S.artist AS Artist, G.name AS Genre, S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.length BETWEEN "+ minLength + " AND " + maxLength + " ORDER BY S.length ASC;"
-	// call function to get queried songs from database
-	songsList := getSongs(query)
-	// write JSON values to an output stream
-	json.NewEncoder(w).Encode(songsList)
+	// check if there are 2 params for range
+
+	errs := checkLengths(lenghts)
+
+	if len(errs) == 0 {
+		minMaxLengths := strings.Split(lenghts, "&")
+		minLength := minMaxLengths[0]
+		maxLength := minMaxLengths[1]
+		// check if min & max are numeric
+		//checkNumeric(minLength, maxLength)
+
+		// this is the sql query to get matching songs
+		var query ="SELECT S.Song AS Title,  S.artist AS Artist, G.name AS Genre, S.length AS Length FROM Songs AS S INNER JOIN Genres AS G ON G.ID = S.genre WHERE S.length BETWEEN "+ minLength + " AND " + maxLength + " ORDER BY S.length ASC;"
+
+		// call function to get queried songs from database
+		songsList := getSongs(query)
+		//checkEmpty(songsList)
+		// write JSON values to an output stream
+		json.NewEncoder(w).Encode(songsList)
+	} else {
+		json.NewEncoder(w).Encode(errs)
+	}
+
+
 }
 
 // function to get numberofsongs and total length grouped by genre

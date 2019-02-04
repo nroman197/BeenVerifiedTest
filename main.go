@@ -9,5 +9,5 @@ func main() {
 	// get mux to handle functions
 	mux := getMux()
 	// listening port
-	http.ListenAndServe("localhost:8000", mux)
+	http.ListenAndServe(listenPort, mux)
 }

@@ -24,7 +24,7 @@ https://s3.amazonaws.com/bv-challenge/jrdd.db.
 ## Requirements & Installation
 This program requires the following:
 
-- [x] Golang 1.9
+- [x] **Golang 1.9**
 
 Recommended commands for ubuntu:
 ```
@@ -34,20 +34,20 @@ sudo apt-get install golang-1.9-go
 ```
 For setting environment variable, check out this link: https://github.com/golang/go/wiki/SettingGOPATH.
 
-- [x] Goji
+- [x] **Goji**
 
 Recommended commands for ubuntu:
 ```
      go get goji.io
 ```
-- [x] Sqllite3
+- [x] **Sqllite3**
 
 Recommended commands for ubuntu:
 ```
 go get github.com/mattn/go-sqlite3
 ```
 Additional:
-- [x] Glide
+- [x] **Glide**
 
 To get all dependencies of this program.
 Check out this link for installation and usage: https://github.com/Masterminds/glide.

@@ -8,6 +8,9 @@ import (
 // global database
 var myDB *sql.DB
 
+// listening port
+var listenPort = "localhost:8000"
+
 // definition of Song struct for retrieved data
 type Song struct {
 	Title string "json:title, omitempty"
