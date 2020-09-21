@@ -1,7 +1,7 @@
 pipeline:
   deploy:
     name: upload
-    image: gcr.io/dd-operations-dev/cloudcli:2e4d7e
+    image: gcr.io/dd-operations-dev/cloudcli
     commands:
       - bash -c 'gcloud auth activate-service-account $GC_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
       - bash -c 'cd /tmp/secrets/google/ && cat key.json'
