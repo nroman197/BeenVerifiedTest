@@ -13,5 +13,3 @@ pipeline:
       - GC_ACCOUNT=airflow-dag-deployments@dd-operations-dev.iam.gserviceaccount.com
   when:
     branch: master
-
-
