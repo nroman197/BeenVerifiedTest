@@ -1,12 +1,11 @@
 pipeline:
   deploy:
     name: upload
-    image: plugins/gcs
-    source: ./test/
-    target: us-east1-oil-refinery-841c5de2-bucket/dags
-    ignore: bin/*
-    cache_control: private,max-age=90
-    token:
-      from_secret: google_application_credentials
+    image: gcr.io/dd-operations-dev/cloudcli
+    commands:
+      - gsutil cp -r ./test/ gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags
+    secrets: 
+      - google_application_credentials
+      - gc_account
     when:
       branch: master
