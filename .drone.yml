@@ -1,14 +1,11 @@
 pipeline:
   deploy:
     name: upload
-    image: gcr.io/dd-operations-dev/cloudcli
+    image: gcr.io/dd-operations-dev/cloudcli:2e4d7e
     commands:
-        - gsutil cp -r ./test/ gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags
+        - gsutil cp -r ./dags/ gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags
     volumes:
-        - /Users/nroman/dd-operations-dev-airflow-dag-deployments-key.json:/tmp/secrets/google/key.json
+        - /Users/nroman/key.json:/tmp/secrets/google/key.json
     environment:
         - GOOGLE_APPLICATION_CREDENTIALS=/tmp/secrets/google/key.json
-    secrets: 
-        - gc_account
-    when:
-        branch: master
+        - GC_ACCOUNT=storage@dd-operations-dev.iam.gserviceaccount.com
