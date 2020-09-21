@@ -3,10 +3,15 @@ pipeline:
     name: upload
     image: gcr.io/dd-operations-dev/cloudcli:2e4d7e
     commands:
-        - bash -c 'gsutil cp -r ./dags/ gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags'
+      - bash -c 'gcloud auth activate-service-account $GC_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
+      - bash -c 'cd /tmp/secrets/google/ && cat key.json'
+      - bash -c 'gsutil cp -r ./dags/ gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags'
     volumes:
-        - /Users/nroman/dagskey.json:/tmp/secrets/google/key.json
+      - /Users/nroman/dagkey.json:/tmp/secrets/google/key.json
     environment:
-        - GOOGLE_APPLICATION_CREDENTIALS=/tmp/secrets/google/key.json
-        - GC_ACCOUNT=airflow-dag-deployments@dd-operations-dev.iam.gserviceaccount.com
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/secrets/google/key.json
+      - GC_ACCOUNT=airflow-dag-deployments@dd-operations-dev.iam.gserviceaccount.com
+  when:
+    branch: master
+
 
