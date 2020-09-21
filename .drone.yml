@@ -1,7 +1,7 @@
 pipeline:
   deploy:
     name: upload
-    image: gcr.io/dd-operations-dev/cloudcli
+    image: gcr.io/dd-operations-dev/cloudcli:856fa7
     commands:
       - bash -c 'gcloud auth activate-service-account $GC_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
       - bash -c 'cd /tmp/secrets/google/ && cat key.json'
@@ -11,5 +11,8 @@ pipeline:
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/tmp/secrets/google/key.json
       - GC_ACCOUNT=airflow-dag-deployments@dd-operations-dev.iam.gserviceaccount.com
+    image_pull_secrets:
+      - dockerconfigjson
+
   when:
     branch: master
