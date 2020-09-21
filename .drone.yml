@@ -8,7 +8,7 @@ pipeline:
       - bash -c 'curl -H "Authorization:token $GITHUB_TOKEN" -L https://codeload.github.com/BeenVerifiedInc/data-eng-airflow/tar.gz/master > repo_dags.gz | tar -xz --strip=2 data-eng-airflow-master/dags'
       - bash -c 'gsutil cp -r . gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags'
       - bash -c 'cd .. && rm -r dags'
-      volumes:
+    volumes:
       - /Users/nroman/dagkey.json:/tmp/secrets/google/key.json
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/tmp/secrets/google/key.json
