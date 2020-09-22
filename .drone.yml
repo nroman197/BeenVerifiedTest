@@ -3,9 +3,9 @@ pipeline:
     name: upload
     image: de-img-cloudcli:tar
     commands:
-      - bash -c 'gcloud auth activate-service-account $GC_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
       - bash -c 'mkdir dags && cd dags'
       - bash -c 'curl -H "Authorization:token $GITHUB_TOKEN" -L https://codeload.github.com/BeenVerifiedInc/data-eng-airflow/tar.gz/master > repo_dags.gz | tar -xz --strip=2 data-eng-airflow-master/dags'
+      - bash -c 'gcloud auth activate-service-account $GC_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
       - bash -c 'gsutil cp -r . gs://dd-operations-dev/us-east1-oil-refinery-841c5de2-bucket/dags'
       - bash -c 'cd .. && rm -r dags'
     volumes:
